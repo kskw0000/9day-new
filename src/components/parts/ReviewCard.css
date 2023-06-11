@@ -1,0 +1,13 @@
+/* ReviewCard.css */
+.card {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
