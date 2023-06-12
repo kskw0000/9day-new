@@ -10,7 +10,7 @@ function NurseryList({ setSelectedNursery }) {
   const [selectedRegion, setSelectedRegion] = useState('全地域');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/nurseries')
+    axios.get('http://localhost:3001/nurseries')
       .then(res => setNurseries(res.data))
       .catch(err => console.log(err));
   }, []);
