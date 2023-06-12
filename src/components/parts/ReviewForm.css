@@ -11,3 +11,15 @@
     display: flex;
     flex-direction: column;
 }
+
+.review-form {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+.inputBox {
+    width: 95%;  /* or any percentage less than 100% */
+    box-sizing: border-box;
+    /* add other styles as needed */
+  }
+  

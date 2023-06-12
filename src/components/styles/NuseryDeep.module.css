@@ -1,0 +1,44 @@
+/* src/styles/NurseryDeep.module.css */
+
+.imgBox {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  alignItems: 'center';
+  justifyContent: 'center';
+  borderRadius: 8px;
+  marginBottom: 20px;
+  /* Adjust border and padding for frame effect */
+  border: 5px solid #f2f2f2;
+  padding: 5px;
+  boxSizing: 'border-box';
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  
+}
+
+
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import SearchBox from './SearchBox';
+import SearchBox from './parts/SearchBox';
 import SelectRegion from './parts/SelectRegion'; 
 
 function NurseryList({ setSelectedNursery }) {
@@ -16,9 +16,10 @@ function NurseryList({ setSelectedNursery }) {
   }, []);
 
   const filteredNurseries = nurseries.filter(nursery => 
-    nursery.name.toLowerCase().includes(searchText.toLowerCase()) && 
+    nursery.name?.toLowerCase().includes(searchText.toLowerCase()) && 
     (selectedRegion === '全地域' || nursery.region === selectedRegion)
-  );
+);
+
 
   const searchAndSelectStyle = { 
     display: 'flex', 
@@ -54,8 +55,8 @@ function NurseryList({ setSelectedNursery }) {
         display: 'flex', 
         flexWrap: 'wrap', 
         justifyContent: 'center',
-        maxWidth: '80%', // 最大幅を設定
-        margin: '0 auto' // 画面中央に配置
+        maxWidth: '80%', 
+        margin: '0 auto' 
       }}> 
         {filteredNurseries.map((nursery, index) => (
           <div

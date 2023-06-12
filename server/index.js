@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const port = 3001;
 const cors = require('cors');
+const multer = require('multer');
 
 app.use(express.json());
 app.use(cors());
@@ -11,8 +12,35 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+// Set up multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  app.post('/nurseries', upload.single('image'), (req, res) => {
+      const { name, location, type } = req.body;
+      const image = req.file ? req.file.filename : null;
+  
+      const db = new sqlite3.Database('./reviews.db');
+      db.run('INSERT INTO nurseries(name, location, type, image) VALUES(?,?,?,?)', [name, location, type, image], function(err) {
+          if (err) {
+            return console.log(err.message);
+          }
+          res.json({ id: this.lastID });
+      });
+      db.close();
+  });
+
 // 保育園情報の登録
 app.post('/nurseries', (req, res) => {
+    console.log(req.body);  // 追加
     const { name, location, type } = req.body;
     const db = new sqlite3.Database('./reviews.db');
     db.run('INSERT INTO nurseries(name, location, type) VALUES(?,?,?)', [name, location, type], function(err) {

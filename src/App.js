@@ -4,8 +4,9 @@ import axios from 'axios';
 import Nursery from './components/NurseryList';
 import ReviewForm from './components/ReviewForm';
 import Admin from './components/Admin';
-import AdminReview from './components/AdminReview'; 
-import NurseryDeep from './components/Nuserydeep';  // <- 名前をNurseryDeepに変更しました
+import AdminReview from './components/AdminReview';
+import NurseryDeep from './components/Nuserydeep';  
+import Header from './components/parts/Header';
 
 function App() {
   const [nurseries, setNurseries] = useState([]);
@@ -28,14 +29,14 @@ function App() {
 
   return (
     <Router>
+      <Header />
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/admin">Admin</Link></li>
-          <li><Link to="/admin/reviews">Admin Reviews</Link></li> 
+          <li><Link to="/">ホーム</Link></li>
+          <li><Link to="/admin">保育園管理</Link></li>
+          <li><Link to="/admin/reviews">口コミ管理</Link></li> 
         </ul>
       </nav>
-
       <Routes>
         <Route path="/" element={<Nursery nurseries={nurseries} selectNursery={selectNursery} />} />
         <Route path="/nursery/:id" element={<NurseryDeep />} />  

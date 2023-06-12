@@ -5,23 +5,29 @@ function Admin() {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [type, setType] = useState('');
+    const [image, setImage] = useState(null);  // 追加
+
+    const handleImageChange = (event) => {  // 追加
+        setImage(event.target.files[0]);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const nursery = {
-            name: name,
-            location: location,
-            type: type
-        };
+        const formData = new FormData();  // 変更
+        formData.append('name', name);  // 変更
+        formData.append('location', location);  // 変更
+        formData.append('type', type);  // 変更
+        formData.append('image', image);  // 追加
 
-        axios.post('http://localhost:3001/nurseries', nursery)
+        axios.post('http://localhost:3001/nurseries', formData)  // 変更
             .then(res => {
                 console.log(res);
 
                 setName('');
                 setLocation('');
                 setType('');
+                setImage(null);  // 追加
             })
             .catch(error => {
                 console.log(error);
@@ -44,6 +50,10 @@ function Admin() {
                     保育園の種類:
                     <input type="text" name="type" value={type} onChange={e => setType(e.target.value)} />
                 </label>
+                <label>  
+                    保育園の画像:
+                    <input type="file" onChange={handleImageChange} />  
+                </label>  
                 <button type="submit">保育園を追加</button>
             </form>
         </div>

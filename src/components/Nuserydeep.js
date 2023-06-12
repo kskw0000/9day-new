@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReviewForm from './ReviewForm';
 import ReviewCard from './parts/ReviewCard';
+import styles from './styles/NuseryDeep.module.css'; // Add this line
+import reviewStyles from './parts/ReviewCard.module.css'; // 追加
+import './styles/App.css';
 
 function Nuserydeep() {
   const { id } = useParams();
@@ -42,30 +45,37 @@ function Nuserydeep() {
   };
 
   return (
-    <div>
+    <div className={styles.container}> {/* Add className */}
       {nursery ? (
         <div>
-          <h2>{nursery.name}</h2>
-          <p>{nursery.location}</p> {/* locationを追加 */}
-          <p>{nursery.type}</p> {/* typeを追加 */}
-          {/* Add other details as needed */}
+          <div className={styles.frame}>
+            <img src={nursery.image} alt="Nursery" className={styles.img} />
+          </div>
+          <div className="detailsBox">
+            <h2 className="detailsText">{nursery.name}</h2>
+            <p className="detailsText">{nursery.location}</p>
+            <p className="detailsText">{nursery.type}</p>
+            {/* Add other details as needed */}
+          </div>
         </div>
       ) : (
-        <p>保育園情報　Loading...</p>
+        <p>保育園情報 Loading...</p>
       )}
 
-{reviews.length > 0 ? (
-    <div>
-        <h3>レビュー</h3>
-        {reviews.map((review, index) => (
-            <ReviewCard key={index} review={review} />
-        ))}
-    </div>
-) : (
-    <p>口コミはまだありません。</p> // reviewsが存在しない場合のメッセージ
-)}
+    <ReviewForm nurseryId={id} onReviewSubmit={handleReviewSubmit} />
 
-      <ReviewForm nurseryId={id} onReviewSubmit={handleReviewSubmit} />
+    <div className={reviewStyles.reviewsContainer}> {/* Add this line */}
+      {reviews.length > 0 ? (
+        <div>
+          <h3>レビュー</h3>
+          {reviews.map((review, index) => (
+            <ReviewCard key={index} review={review} />
+          ))}
+        </div>
+      ) : (
+        <p>口コミはまだありません。</p> // reviewsが存在しない場合のメッセージ
+      )}
+    </div>
     </div>
   );
 }
