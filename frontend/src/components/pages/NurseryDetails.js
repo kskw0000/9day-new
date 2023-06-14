@@ -8,7 +8,7 @@ const NurseryDetails = ({ match }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://nineday-neww.onrender.com/${match.params.id}`)
+    axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${match.params.id}`)
       .then(res => {
         setNursery(res.data.nursery);
         setReviews(res.data.reviews);

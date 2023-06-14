@@ -15,7 +15,7 @@ function AdminReview() {
             comment: comment
         };
 
-        axios.post('https://nineday-neww.onrender.com', review)
+        axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/reviews`, review)
             .then(res => {
                 console.log(res);
 

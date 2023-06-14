@@ -5,7 +5,7 @@ function NurseryReviews({ nurseryName }) {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://nineday-neww.onrender.com/${nurseryName}`)
+        axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/reviews/${nurseryName}`)
             .then(res => setReviews(res.data))
             .catch(err => console.log(err));
     }, [nurseryName]);

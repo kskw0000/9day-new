@@ -20,7 +20,7 @@ function Admin() {
         formData.append('type', type);  // 変更
         formData.append('image', image);  // 追加
 
-        axios.post('https://nineday-neww.onrender.com', formData)  // 変更
+        axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries`, formData)  // 変更
             .then(res => {
                 console.log(res);
 

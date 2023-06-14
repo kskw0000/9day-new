@@ -14,7 +14,7 @@ function Nuserydeep() {
 
   useEffect(() => {
     // 保育園の詳細情報を取得
-    axios.get(`https://nineday-neww.onrender.com/${id}`)
+    axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${id}`)
       .then(res => {
         setNursery(res.data);
       })
@@ -23,7 +23,7 @@ function Nuserydeep() {
 
   useEffect(() => {
     // その保育園のレビューを取得
-    axios.get(`https://nineday-neww.onrender.com/${id}/reviews`)
+    axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${id}/reviews`)
       .then(res => {
         setReviews(res.data || []);
       })
@@ -33,7 +33,7 @@ function Nuserydeep() {
 
   const handleReviewSubmit = (review) => {
     const reviewWithNurseryId = { ...review, nurseryId: id };
-    axios.post(`https://nineday-neww.onrender.com/${id}/reviews`, review)
+    axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${id}/reviews`, review)
       .then(res => {
         if (res.status === 200) {
           setReviews(prevReviews => [...prevReviews, res.data]);

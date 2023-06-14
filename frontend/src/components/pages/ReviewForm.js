@@ -7,6 +7,8 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState('');
 
+  console.log("process.env.REACT_APP_SERVER_ROOT_URL", process.env.REACT_APP_SERVER_ROOT_URL)
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -21,7 +23,7 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
       comment: review,
     };
 
-    axios.post(`https://nineday-neww.onrender.com/${nurseryId}/reviews`, newReview)
+    axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${nurseryId}/reviews`, newReview)
       .then(res => {
         onReviewSubmit(newReview);
       })

@@ -10,8 +10,11 @@ function NurseryList({ setSelectedNursery }) {
   const [selectedRegion, setSelectedRegion] = useState('全地域');
 
   useEffect(() => {
-    axios.get('https://nineday-neww.onrender.com')
-      .then(res => setNurseries(res.data))
+    axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries`)
+      .then(res => {
+        const nurseries = res.data
+        setNurseries(nurseries.filter(nurse => !!nurse.name))
+      })
       .catch(err => console.log(err));
   }, []);
 
