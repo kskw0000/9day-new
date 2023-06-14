@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './parts/ReviewForm.css';  // CSSファイルをインポートします。
+import '../styles/ReviewForm.css';  // CSSファイルをインポートします。
 
 const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
   const [yard, setYard] = useState('良い点');
@@ -11,7 +11,7 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
     event.preventDefault();
 
     if (review.length < 5 || review.length > 1000) {
-      alert('レビューは100文字以上1000文字以内で入力してください。');
+      alert('レビューは最低限5文字以上は入力してください。');
       return;
     }
 
@@ -33,15 +33,7 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
     <div className="review-card">
       <div className="review-card-body">
         <form onSubmit={handleSubmit} className="reviewForm">
-          <div className="reviewField">
-            <label>
-              園庭・園舎:
-              <select value={yard} onChange={e => setYard(e.target.value)}>
-                <option value="良い点">良い点</option>
-                <option value="改善点">改善点</option>
-              </select>
-            </label>
-          </div>
+        
 
           <div className="reviewField">
             <label>

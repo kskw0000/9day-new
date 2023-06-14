@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios';
-import Nursery from './components/NurseryList';
-import ReviewForm from './components/ReviewForm';
-import Admin from './components/Admin';
-import AdminReview from './components/AdminReview';
-import NurseryDeep from './components/Nuserydeep';  
+import Nursery from './components/pages/NurseryList';
+import ReviewForm from './components/pages/ReviewForm';
+import Admin from './components/pages/Admin';
+import AdminReview from './components/pages/AdminReview';
+import AdminPage from './components/pages/AdminPage'; // 新しいコンポーネントをインポート
+import NurseryDeep from './components/pages/Nuserydeep';  
 import Header from './components/parts/Header';
+import Footer from './components/parts/Footer';  // Footerをインポート
+
 
 function App() {
   const [nurseries, setNurseries] = useState([]);
@@ -30,20 +33,15 @@ function App() {
   return (
     <Router>
       <Header />
-      <nav>
-        <ul>
-          <li><Link to="/">ホーム</Link></li>
-          <li><Link to="/admin">保育園管理</Link></li>
-          <li><Link to="/admin/reviews">口コミ管理</Link></li> 
-        </ul>
-      </nav>
+      
       <Routes>
         <Route path="/" element={<Nursery nurseries={nurseries} selectNursery={selectNursery} />} />
         <Route path="/nursery/:id" element={<NurseryDeep />} />  
         <Route path="/review" element={<ReviewForm nursery={selectedNursery} />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/reviews" element={<AdminReview />} /> 
       </Routes>
+      <Footer /> 
     </Router>
   );
 }

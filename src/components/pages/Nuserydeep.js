@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ReviewForm from './ReviewForm';
-import ReviewCard from './parts/ReviewCard';
-import styles from './styles/NuseryDeep.module.css'; // Add this line
-import reviewStyles from './parts/ReviewCard.module.css'; // 追加
-import './styles/App.css';
+import ReviewCard from '../parts/ReviewCard';
+import styles from '../styles/NuseryDeep.module.css'; // Add this line
+import reviewStyles from '../styles/ReviewCard.module.css'; // 追加
+import '../styles/App.css';
 
 function Nuserydeep() {
   const { id } = useParams();
@@ -48,7 +48,7 @@ function Nuserydeep() {
     <div className={styles.container}> {/* Add className */}
       {nursery ? (
         <div>
-          <div className={styles.frame}>
+          <div className={styles.imgBox}>
             <img src={nursery.image} alt="Nursery" className={styles.img} />
           </div>
           <div className="detailsBox">
@@ -67,7 +67,7 @@ function Nuserydeep() {
     <div className={reviewStyles.reviewsContainer}> {/* Add this line */}
       {reviews.length > 0 ? (
         <div>
-          <h3>レビュー</h3>
+          <h3 className={reviewStyles.reviewTitle}>口コミ</h3>
           {reviews.map((review, index) => (
             <ReviewCard key={index} review={review} />
           ))}

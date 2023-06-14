@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import SearchBox from './parts/SearchBox';
-import SelectRegion from './parts/SelectRegion'; 
+import SearchBox from '../parts/SearchBox';
+import SelectRegion from '../parts/SelectRegion'; 
 
 function NurseryList({ setSelectedNursery }) {
   const [nurseries, setNurseries] = useState([]);
@@ -16,10 +16,9 @@ function NurseryList({ setSelectedNursery }) {
   }, []);
 
   const filteredNurseries = nurseries.filter(nursery => 
-    nursery.name?.toLowerCase().includes(searchText.toLowerCase()) && 
+    (nursery.name && nursery.name.toLowerCase().includes(searchText.toLowerCase())) &&
     (selectedRegion === '全地域' || nursery.region === selectedRegion)
-);
-
+  );
 
   const searchAndSelectStyle = { 
     display: 'flex', 
@@ -58,21 +57,21 @@ function NurseryList({ setSelectedNursery }) {
         maxWidth: '80%', 
         margin: '0 auto' 
       }}> 
+
+        {/* Update your component with this new JSX and styles */}
+        <div className="card-container"> 
         {filteredNurseries.map((nursery, index) => (
-          <div
-            key={index}
-            style={index === hoveredCard ? {...cardStyle, ...hoverStyle} : cardStyle}
-            onMouseEnter={() => setHoveredCard(index)}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <h3>{nursery.name}</h3>
-            <p>{nursery.location}</p>
-            <p>{nursery.type}</p>
-            <Link to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none' }}>
-              <button style={{ marginTop: '10px', cursor: 'pointer' }}>詳細を見る</button>
-            </Link>
-          </div>
-        ))}
+        <Link to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <div className="card">
+      <div className="card-image">
+        <img src={nursery.thumbnail} alt={nursery.name} />
+        <p>{nursery.name}</p>
+      </div>
+    </div>
+  </Link>
+  ))}
+</div>
+
       </div>
     </div>
   );

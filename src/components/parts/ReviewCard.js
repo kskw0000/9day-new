@@ -1,14 +1,14 @@
 // ReviewCard.js
 import React from 'react';
-import './ReviewCard.css';
+import styles from '../styles/ReviewCard.module.css';
 
 const ReviewCard = ({ review }) => {
     return (
-        <div className="card">
-            <div className="card-body">
-                <h5 className="card-title">{review.yard}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{review.rating}</h6>
-                <p className="card-text">{review.comment}</p>
+        <div className={styles.card}>
+            <div className={styles.cardBody}>
+                <h5 className={styles.userName}>{review.userName}</h5>
+                <p className={styles.date}>{review.date}</p>
+                <p className={styles.comment}>{review.comment}</p>
             </div>
         </div>
     );
