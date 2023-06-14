@@ -15,7 +15,7 @@ function AdminReview() {
             comment: comment
         };
 
-        axios.post('http://localhost:3001/reviews', review)
+        axios.post('https://nineday-neww.onrender.com', review)
             .then(res => {
                 console.log(res);
 

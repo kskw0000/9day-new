@@ -21,7 +21,7 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
       comment: review,
     };
 
-    axios.post(`http://localhost:3001/nurseries/${nurseryId}/reviews`, newReview)
+    axios.post(`https://nineday-neww.onrender.com/${nurseryId}/reviews`, newReview)
       .then(res => {
         onReviewSubmit(newReview);
       })

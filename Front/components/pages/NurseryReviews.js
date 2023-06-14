@@ -5,7 +5,7 @@ function NurseryReviews({ nurseryName }) {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/reviews/${nurseryName}`)
+        axios.get(`https://nineday-neww.onrender.com/${nurseryName}`)
             .then(res => setReviews(res.data))
             .catch(err => console.log(err));
     }, [nurseryName]);
