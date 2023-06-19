@@ -141,7 +141,7 @@
   overflow: hidden;
   position: relative;
   width: 150px; /* <-- change this to adjust the card width */
-  height: 245px; /* <-- add this to adjust the card height */
+  height: 240px; /* <-- add this to adjust the card height */
   display: flex;
   flex-direction: column;
 }

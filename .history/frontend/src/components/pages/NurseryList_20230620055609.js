@@ -53,7 +53,7 @@ function NurseryList({ setSelectedNursery }) {
           </Link>
         ))}
       </div>
-      <h2 className="title">新着保育園10選 !</h2>
+      <h2 className="title">新着保育園10選!</h2>
 
       <div className="card-container"> 
         {secondRowNurseries.map((nursery, index) => (

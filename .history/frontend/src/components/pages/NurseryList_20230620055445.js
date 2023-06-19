@@ -24,8 +24,8 @@ function NurseryList({ setSelectedNursery }) {
     (selectedRegion === '全地域' || nursery.region === selectedRegion)
   );
 
-  const firstRowNurseries = filteredNurseries.slice(0, filteredNurseries.length - 10);
-  const secondRowNurseries = filteredNurseries.slice(filteredNurseries.length - 10);
+  const firstRowNurseries = filteredNurseries.slice(0, filteredNurseries.length - 6);
+  const secondRowNurseries = filteredNurseries.slice(filteredNurseries.length - 6);
 
   const searchAndSelectStyle = { 
     display: 'flex', 
@@ -53,7 +53,7 @@ function NurseryList({ setSelectedNursery }) {
           </Link>
         ))}
       </div>
-      <h2 className="title">新着保育園10選 !</h2>
+      <h2 className="title">新着保育園</h2>
 
       <div className="card-container"> 
         {secondRowNurseries.map((nursery, index) => (
