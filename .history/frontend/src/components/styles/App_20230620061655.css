@@ -153,21 +153,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;  /* Keep this to position the text */
   height: 100%;
 }
 
 .card-image img {
+  /* Remove height: 100%; */
   width: 100%;
   object-fit: cover;
   display: block;
 }
 
 .card-image p {
-  position: absolute;
+  /* Remove these lines */
+  /* position: absolute;
   top: 50%;  
   left: 50%;  
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); */
+  /* Add these lines */
   width: 100%;
   text-align: center; 
   background-color: rgba(0, 0, 0, 0.5);
@@ -176,7 +178,6 @@
   padding: 10px;
   box-sizing: border-box;
 }
-
 
 
 .card:hover {
