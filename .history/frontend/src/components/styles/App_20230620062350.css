@@ -163,19 +163,7 @@
   display: block;
 }
 
-.card-image p {
-  position: absolute;
-  top: 50%;  
-  left: 50%;  
-  transform: translate(-50%, -50%); 
-  width: 100%;
-  text-align: center; 
-  background-color: rgba(86, 82, 84, 0.5);
-  color: white;
-  margin: 0;
-  padding: 10px;
-  box-sizing: border-box;
-}
+
 
 
 
