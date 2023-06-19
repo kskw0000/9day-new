@@ -6,9 +6,15 @@ function Admin() {
     const [location, setLocation] = useState('');
     const [type, setType] = useState('');
     const [image, setImage] = useState(null);  // 追加
+    const [thumbnail, setThumbnail] = useState(null);  // 追加
+
 
     const handleImageChange = (event) => {  // 追加
         setImage(event.target.files[0]);
+    };
+
+    const handleThumbnailChange = (event) => {  // 追加
+        setThumbnail(event.target.files[0]);
     };
 
     const handleSubmit = (event) => {
@@ -19,6 +25,8 @@ function Admin() {
         formData.append('location', location);  // 変更
         formData.append('type', type);  // 変更
         formData.append('image', image);  // 追加
+        formData.append('thumbnail', thumbnail);  // 追加
+
 
         axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries`, formData)  // 変更
             .then(res => {
@@ -28,6 +36,7 @@ function Admin() {
                 setLocation('');
                 setType('');
                 setImage(null);  // 追加
+                setThumbnail(null);  // 追加
             })
             .catch(error => {
                 console.log(error);
@@ -54,6 +63,10 @@ function Admin() {
                     保育園の画像:
                     <input type="file" onChange={handleImageChange} />  
                 </label>  
+                <label> 
+                    サムネイル画像:
+                    <input type="file" onChange={handleThumbnailChange} />
+                </label>
                 <button type="submit">保育園を追加</button>
             </form>
         </div>

@@ -5,6 +5,7 @@ import SearchBox from '../parts/SearchBox';
 import SelectRegion from '../parts/SelectRegion'; 
 
 function NurseryList({ setSelectedNursery }) {
+
   const [nurseries, setNurseries] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('全地域');
@@ -63,16 +64,17 @@ function NurseryList({ setSelectedNursery }) {
 
         {/* Update your component with this new JSX and styles */}
         <div className="card-container"> 
-        {filteredNurseries.map((nursery, index) => (
-        <Link to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-    <div className="card">
-      <div className="card-image">
-        <img src={nursery.thumbnail} alt={nursery.name} />
-        <p>{nursery.name}</p>
-      </div>
-    </div>
-  </Link>
-  ))}
+          {filteredNurseries.map((nursery, index) => (
+            <Link key={nursery.id} to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="card">
+                <div className="card-image">
+                  <img src={nursery.thumbnail} alt={nursery.name} />
+                  <p>{nursery.name}</p>
+                </div>
+              </div>
+            </Link>
+))}
+
 </div>
 
       </div>

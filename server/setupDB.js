@@ -8,26 +8,35 @@ let db = new sqlite3.Database('./reviews.db', (err) => {
 });
 
 db.serialize(() => {
-    db.get('SELECT name FROM sqlite_master WHERE type="table" AND name="reviews"', (err, row) => {
+  db.get('SELECT name FROM sqlite_master WHERE type="table" AND name="reviews"', (err, row) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    if (row) {
+      db.run('DROP TABLE IF EXISTS reviews', err => {
         if (err) {
-            return console.error(err.message);
+          return console.error(err.message);
         }
-        if (row) {
-            db.run('DROP TABLE IF EXISTS reviews', err => {
-                if (err) {
-                    return console.error(err.message);
-                }
-                console.log('Dropped existing reviews table.');
-            });
-        }
-    });
-    
-    db.run('CREATE TABLE IF NOT EXISTS reviews(id INTEGER PRIMARY KEY AUTOINCREMENT, nurseryId INTEGER, yard text, rating text, comment text, FOREIGN KEY(nurseryId) REFERENCES nurseries(id))', err => {
-        if (err) {
-            return console.error(err.message);
-        }
-        console.log('Successfully created/modified the reviews table.');
-    });
+        console.log('Dropped existing reviews table.');
+      });
+    }
+  });
+
+  db.run('CREATE TABLE IF NOT EXISTS reviews(id INTEGER PRIMARY KEY AUTOINCREMENT, nurseryId INTEGER, yard text, rating text, comment text, FOREIGN KEY(nurseryId) REFERENCES nurseries(id))', err => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Successfully created/modified the reviews table.');
+  });
+
+  // Add this block
+  db.run('CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)', err => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Successfully created/modified the users table.');
+  });
+  // End block
 });
 
 db.close((err) => {
