@@ -24,8 +24,8 @@ function NurseryList({ setSelectedNursery }) {
     (selectedRegion === '全地域' || nursery.region === selectedRegion)
   );
 
-  const firstRowNurseries = filteredNurseries.slice(0, filteredNurseries.length - 6);
-  const secondRowNurseries = filteredNurseries.slice(filteredNurseries.length - 6);
+  const firstRowNurseries = filteredNurseries.slice(0, filteredNurseries.length - 5);
+  const secondRowNurseries = filteredNurseries.slice(filteredNurseries.length - 5);
 
   const searchAndSelectStyle = { 
     display: 'flex', 
@@ -36,11 +36,11 @@ function NurseryList({ setSelectedNursery }) {
 
   return (
     <div>
+      <h2 className="title">保育園一覧</h2>
       <div style={searchAndSelectStyle}>
         <SearchBox onSearch={setSearchText} />
         <SelectRegion onSelect={setSelectedRegion} />
       </div>
-      <h2 className="title">保育園一覧</h2>
       <div className="card-container"> 
         {firstRowNurseries.map((nursery, index) => (
           <Link key={nursery.id} to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
