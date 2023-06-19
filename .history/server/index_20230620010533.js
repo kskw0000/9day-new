@@ -1,23 +1,23 @@
+import { config } from 'dotenv';
+config();
+
 import express from 'express';
-import sqlite3Base from 'sqlite3';
+import { verbose } from 'sqlite3';
 import bcrypt from 'bcrypt';
 import cors from 'cors';
 import multer from 'multer';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config();
-const sqlite3 = sqlite3Base.verbose();
-const db = new sqlite3.Database('./reviews.db', (err) => {
-  if (err) {
-    console.error(err.message);
-  }
-  console.log('Connected to the reviews database.');
-});
+const sqlite3 = verbose();
+require('dotenv').config();
 
-
+const express = require('express');
+const bcrypt = require('bcrypt');
 const app = express();
 const port = 3001;
+const cors = require('cors');
+const multer = require('multer');
+const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -33,6 +33,12 @@ function authenticateToken(req, res, next) {
 }
 
 
+const db = new sqlite3.Database('./reviews.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the reviews database.');
+});
 
 db.run(`
   CREATE TABLE IF NOT EXISTS users (

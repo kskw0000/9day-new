@@ -32,7 +32,12 @@ function authenticateToken(req, res, next) {
   });
 }
 
-
+const db = new sqlite3.Database('./reviews.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the reviews database.');
+});
 
 db.run(`
   CREATE TABLE IF NOT EXISTS users (
