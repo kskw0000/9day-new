@@ -27,10 +27,6 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
     // トークンを取得します
     const token = localStorage.getItem('token');
 
-  // レビューをサーバーに送信する部分を削除
-  // axios.post(...)
-
-  // 代わりにレビューを親コンポーネントに提供
     onReviewSubmit(newReview);
     setReview(''); // レビューの入力欄をリセット
     setRating(''); // 評価もリセット
