@@ -33,11 +33,11 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
         setReview(''); // レビューの入力欄をリセット
         setRating(''); // 評価もリセット
         setSubmitted(true); // レビュー投稿の成功を記録
-      })
-      .catch(err => {
-        console.log(err);
-        setSubmitted(false); // レビュー投稿の失敗を記録
-      });
+  })
+  .catch(err => {
+    console.log(err);
+    setSubmitted(false); // レビュー投稿の失敗を記録
+  });
 
   };
 
@@ -46,7 +46,6 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
 
   return (
     <div className="review-form">
-      {submitted && <p>口コミが投稿できました！</p>} {/* 投稿成功のメッセージを表示 */}
     <div className="review-card">
       <div className="review-card-body">
         <form onSubmit={handleSubmit} className="reviewForm">

@@ -46,7 +46,6 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
 
   return (
     <div className="review-form">
-      {submitted && <p>口コミが投稿できました！</p>} {/* 投稿成功のメッセージを表示 */}
     <div className="review-card">
       <div className="review-card-body">
         <form onSubmit={handleSubmit} className="reviewForm">

@@ -30,14 +30,8 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
     axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${nurseryId}/reviews`, newReview)
       .then(res => {
         onReviewSubmit(newReview);
-        setReview(''); // レビューの入力欄をリセット
-        setRating(''); // 評価もリセット
-        setSubmitted(true); // レビュー投稿の成功を記録
-      })
-      .catch(err => {
-        console.log(err);
-        setSubmitted(false); // レビュー投稿の失敗を記録
-      });
+  })
+  .catch(err => console.log(err));
 
   };
 
@@ -46,7 +40,6 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
 
   return (
     <div className="review-form">
-      {submitted && <p>口コミが投稿できました！</p>} {/* 投稿成功のメッセージを表示 */}
     <div className="review-card">
       <div className="review-card-body">
         <form onSubmit={handleSubmit} className="reviewForm">
