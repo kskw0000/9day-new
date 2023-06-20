@@ -35,7 +35,7 @@ function NurseryList({ setSelectedNursery }) {
   };
 
   const handleImgError = e => {
-    e.target.src = 'frontend/src/components/imgs/procare.png'; // Put the path of your placeholder image here
+    e.target.src = '/path/to/your/placeholder/image.jpg'; // Put the path of your placeholder image here
   };
 
 
