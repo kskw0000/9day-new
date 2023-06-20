@@ -25,12 +25,15 @@ const ReviewForm = ({ nurseryId, onReviewSubmit }) => {
     // トークンを取得します
     const token = localStorage.getItem('token');
 
-    axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${nurseryId}/reviews`, newReview)
-  .then(res => {
-    onReviewSubmit(newReview);
-  })
-  .catch(err => console.log(err));
-
+    axios.post(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries/${nurseryId}/reviews`, newReview, {
+      headers: {
+        Authorization: `Bearer ${token}` // ヘッダーにトークンを含める
+      }
+    })
+      .then(res => {
+        onReviewSubmit(newReview);
+      })
+      .catch(err => console.log(err));
   };
 
 

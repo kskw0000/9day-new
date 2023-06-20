@@ -191,7 +191,7 @@ app.get('/nurseries/:id/reviews', (req, res) => {
 });
 
 // 新たなレビューを作成するエンドポイント
-app.post('/nurseries/:id/reviews', (req, res) => {
+aapp.post('/nurseries/:id/reviews', (req, res) => {
   const { yard, rating, comment } = req.body;
   const { id: nurseryId } = req.params;
 
