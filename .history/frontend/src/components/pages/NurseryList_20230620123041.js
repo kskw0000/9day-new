@@ -2,30 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SearchBox from '../parts/SearchBox';
-import SelectRegion from '../parts/SelectRegion';
-
-const CardImage = ({ src, alt, placeholder }) => {
-  const [loaded, setLoaded] = useState(false);
-
-  const handleOnLoad = () => {
-    setLoaded(true);
-  };
-
-  return (
-    <>
-      <img src={src} alt={alt} onLoad={handleOnLoad} style={{display: loaded ? 'block' : 'none'}} />
-      {!loaded && <img src={placeholder} alt={alt} />}
-    </>
-  );
-};
+import SelectRegion from '../parts/SelectRegion'; 
 
 function NurseryList({ setSelectedNursery }) {
 
   const [nurseries, setNurseries] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('全地域');
-
-  const placeholderImg = 'path-to-your-placeholder-image'; // Set this to your placeholder image path
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_ROOT_URL}/nurseries`)
@@ -51,6 +34,11 @@ function NurseryList({ setSelectedNursery }) {
     margin: '20px 0'
   };
 
+  const handleImgError = e => {
+    e.target.src = 'frontend/src/components/imgs/procare.png'; // Put the path of your placeholder image here
+  };
+
+
   return (
     <div>
       <div style={searchAndSelectStyle}>
@@ -63,7 +51,7 @@ function NurseryList({ setSelectedNursery }) {
           <Link key={nursery.id} to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="card">
               <div className="card-image">
-                <CardImage src={nursery.thumbnail} alt={nursery.name} placeholder={placeholderImg} />
+                <img src={nursery.thumbnail} alt={nursery.name} />
                 <p>{nursery.name}</p>
               </div>
             </div>
@@ -77,7 +65,7 @@ function NurseryList({ setSelectedNursery }) {
           <Link key={nursery.id} to={`/nursery/${nursery.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="card">
               <div className="card-image">
-                <CardImage src={nursery.thumbnail} alt={nursery.name} placeholder={placeholderImg} />
+                <img src={nursery.thumbnail} alt={nursery.name} />
                 <p>{nursery.name}</p>
               </div>
             </div>
